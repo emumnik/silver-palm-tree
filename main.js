@@ -11,8 +11,8 @@ function compareNumbers(a, b) {
 }
 
 
-console.log(compareNumbers(5, 5));
-console.log(compareNumbers(10, 5));
+console.log(compareNumbers(5, 5))
+console.log(compareNumbers(10, 5))
 console.log(compareNumbers("5", 5))
 
 
@@ -42,21 +42,21 @@ console.log(fahrenheitToCelsius("32"))
 function performOperation(a, b, operation) {
    
     if (typeof a === 'string' || typeof b === 'string') {
-        return false;
+        return false
     }
 
-    let result;
+    let result
     
     switch (operation) {
         case '+':
             result = a + b
-            break;
+            break
         case '-':
             result = a - b
-            break;
+            break
         case '*':
             result = a * b
-            break;
+            break
         case '/':
             if (b === 0) {
                 return false
