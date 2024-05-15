@@ -2,16 +2,19 @@ console.log("Ding Dong");
 
 // first assignment
 
-function calculate(a, b){
-    if(typeof a === 'string' || typeof b === 'string'){
-        return "error in matrix"
+function compareNumbers(a, b) {
+    if (a === b) {
+        return "Equal"
+    } else {
+        return "Not equal "
     }
-    return a + b
 }
 
-console.log(calculate(9, 1))
-console.log(calculate("9", 1))
-console.log(calculate(9, "1"))
+
+console.log(compareNumbers(5, 5));
+console.log(compareNumbers(10, 5));
+console.log(compareNumbers("5", 5))
+
 
 
 // Second assignment
