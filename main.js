@@ -1,82 +1,81 @@
-console.log("Ding Dong");
+const users = [
+    { name: 'Temo', age: 25 },
+    { name: 'Lasha', age: 21 },
+    { name: 'Ana', age: 28 }
+];
 
-// first assignment compareNumbers
+function getYoungestPerson(users) {
 
-function compareValues(a, b) {
-    if (a == b) {
-        return "equal"
+
+    let youngestPerson = users[0];
+
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].age < youngestPerson.age) {
+            youngestPerson = users[i];
+        }
+    }
+
+    return youngestPerson.name;
+}
+
+console.log(getYoungestPerson(users));
+
+
+
+
+function cloneUser(user) {
+    return Object.assign({}, user);
+}
+
+const originalUser = { name: 'Lasha', age: 21 };
+const clonedUser = cloneUser(originalUser);
+
+console.log(clonedUser);
+console.log(clonedUser === originalUser);
+
+
+
+
+
+function rollDie() {
+    return Math.floor(Math.random() * 6) + 1;
+}
+
+
+function playGame() {
+    
+    let aTries = 0;
+    let bTries = 0;
+    
+    
+    let aRoll = 0;
+    let bRoll = 0;
+
+   
+    while (aRoll !== 3) {
+        aRoll = rollDie();
+        aTries++;
+    }
+
+    
+    while (bRoll !== 3) {
+        bRoll = rollDie();
+        bTries++;
+    }
+
+   
+    if (aTries < bTries) {
+        console.log(`Player A wins! It took ${aTries} tries.`);
+    } else if (bTries < aTries) {
+        console.log(`Player B wins! It took ${bTries} tries.`);
     } else {
-        return "Not equal"
+        console.log(`It's a tie! Both players took ${aTries} tries.`);
     }
 }
 
 
-console.log(compareValues(5, "5"))
-console.log(compareValues("ding", "DONG"))
-console.log(compareValues(true, 1))
-console.log(compareValues(null, undefined))
+playGame();
 
 
 
-
-// Second assignment fahrenheitToCelsius
-
-function fahrenheitToCelsius(fahrenheit) {
-   
-    if (typeof fahrenheit === 'string') {
-        return false
-    }
-
-    
-    let celsius = (fahrenheit - 32) * 5 / 9
-
-    return celsius
-}
-
-
-console.log(fahrenheitToCelsius(32)) 
-console.log(fahrenheitToCelsius("32"))
-
-
-// Third assignment performOperation
-
-
-function performOperation(a, b, operation) {
-   
-    if (typeof a === 'string' || typeof b === 'string') {
-        return false
-    }
-
-    let result
-    
-    switch (operation) {
-        case '+':
-            result = a + b
-            break
-        case '-':
-            result = a - b
-            break
-        case '*':
-            result = a * b
-            break
-        case '/':
-            if (b === 0) {
-                return false
-            } 
-                result = a / b
-            
-            break
-        
-    }
-
-    return result
-}
-
-
-console.log(performOperation(5, 3, '+'))
-console.log(performOperation(5, 3, '-')) 
-console.log(performOperation(10, 4, '*'))
-console.log(performOperation(8, 2, '/'))
-console.log(performOperation(6, 0, '/')) 
-console.log(performOperation("9", "2", '*'))
 
