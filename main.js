@@ -1,81 +1,61 @@
-const users = [
-    { name: 'Temo', age: 25 },
-    { name: 'Lasha', age: 21 },
-    { name: 'Ana', age: 28 }
-];
-
-function getYoungestPerson(users) {
-
-
-    let youngestPerson = users[0];
-
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].age < youngestPerson.age) {
-            youngestPerson = users[i];
-        }
+function calculateArray(n) {
+    if (n <= 2) {
+        return 'Invalid input. Please enter a number greater than 2.';
     }
 
-    return youngestPerson.name;
+    const sumFirstSecond = 1 + 2;
+
+    const numbers = Array.from({ length: n - 2 }, (_, i) => i + 3);
+
+    const productFromThird = numbers.reduce((product, number) => product * number, 1);
+
+    return [sumFirstSecond, productFromThird];
 }
 
-console.log(getYoungestPerson(users));
+const result = calculateArray(5);
+console.log(result);
 
 
-
-
-function cloneUser(user) {
-    return Object.assign({}, user);
+function getCity(user) {
+    return user?.banks?.[2]?.address?.city;
 }
 
-const originalUser = { name: 'Lasha', age: 21 };
-const clonedUser = cloneUser(originalUser);
+const user1 = {
+    banks: [
+        { address: { city: 'City1' } },
+        { address: { city: 'City2' } },
+        { address: { city: 'City3' } }
+    ]
+};
 
-console.log(clonedUser);
-console.log(clonedUser === originalUser);
+const user2 = {
+    banks: [
+        { address: { city: 'City1' } },
+        { address: { city: 'City2' } }
+    ]
+};
+
+console.log(getCity(user1));
+console.log(getCity(user2));
 
 
-
-
-
-function rollDie() {
-    return Math.floor(Math.random() * 6) + 1;
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
 }
 
+const original = {
+    name: 'John',
+    age: 30,
+    address: {
+        city: 'New York',
+        zip: '10001'
+    },
+    hobbies: ['reading', 'traveling']
+};
 
-function playGame() {
-    
-    let aTries = 0;
-    let bTries = 0;
-    
-    
-    let aRoll = 0;
-    let bRoll = 0;
+const cloned = deepClone(original);
 
-   
-    while (aRoll !== 3) {
-        aRoll = rollDie();
-        aTries++;
-    }
-
-    
-    while (bRoll !== 3) {
-        bRoll = rollDie();
-        bTries++;
-    }
-
-   
-    if (aTries < bTries) {
-        console.log(`Player A wins! It took ${aTries} tries.`);
-    } else if (bTries < aTries) {
-        console.log(`Player B wins! It took ${bTries} tries.`);
-    } else {
-        console.log(`It's a tie! Both players took ${aTries} tries.`);
-    }
-}
-
-
-playGame();
-
-
-
-
+console.log(cloned);
+console.log(cloned === original);
+console.log(cloned.address === original.address);
+console.log(cloned.hobbies === original.hobbies);
