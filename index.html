@@ -1,9 +1,192 @@
-<!DOCTYPE html> 
-<html>
-    <head>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide Div Example</title>
+    <style>
+        #uniqueDiv {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <button id="uniqueButton">Dont click</button>
+    <div id="uniqueDiv">I said dont click</div>
 
-    <body>
-        <script src="./main.js"></script>
-    </body>
+    <script>
+        document.getElementById('uniqueButton').addEventListener('click', function() {
+            document.getElementById('uniqueDiv').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS DOM Manipulation</title>
+</head>
+<body>
+    <script>
+        
+        const div = document.createElement('div');
+        div.id = 'card';
+
+      
+        const h2 = document.createElement('h2');
+        h2.textContent = 'Gandalf';
+
+     
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = 'Go to profile';
+
+        
+        div.appendChild(h2);
+        div.appendChild(a);
+
+        
+        document.body.appendChild(div);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <style>
+        .question-container {
+            margin-bottom: 20px;
+        }
+        .question {
+            font-weight: bold;
+        }
+        .answer {
+            display: block;
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .answer.correct {
+            background-color: green;
+            color: white;
+        }
+        .answer.wrong {
+            background-color: red;
+            color: white;
+        }
+        #score {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container"></div>
+    <div id="score-container">Score: <span id="score">0</span></div>
+
+    <script>
+        
+        const questions = [
+            {
+                question: "What is the capital of France?",
+                answers: ["Paris", "London", "Berlin", "Madrid"],
+                correctAnswer: "Paris"
+            },
+            {
+                question: "What is 2 + 2?",
+                answers: ["3", "4", "5", "6"],
+                correctAnswer: "4"
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                answers: ["Earth", "Mars", "Jupiter", "Venus"],
+                correctAnswer: "Mars"
+            }
+        ];
+
+        let score = 0;
+
+       
+        function handleAnswerClick(event) {
+            const selectedAnswer = event.target;
+            const questionIndex = selectedAnswer.getAttribute('data-question-index');
+            const correctAnswer = questions[questionIndex].correctAnswer;
+
+            if (selectedAnswer.textContent === correctAnswer) {
+                selectedAnswer.classList.add('correct');
+                score++;
+            } else {
+                selectedAnswer.classList.add('wrong');
+            }
+
+           
+            document.getElementById('score').textContent = score;
+
+           
+            const answers = document.querySelectorAll(`[data-question-index="${questionIndex}"]`);
+            answers.forEach(answer => answer.removeEventListener('click', handleAnswerClick));
+        }
+
+      
+        function renderQuiz() {
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = '';
+
+            questions.forEach((question, index) => {
+                const questionContainer = document.createElement('div');
+                questionContainer.classList.add('question-container');
+
+                const questionElement = document.createElement('div');
+                questionElement.classList.add('question');
+                questionElement.textContent = question.question;
+                questionContainer.appendChild(questionElement);
+
+                question.answers.forEach(answer => {
+                    const answerElement = document.createElement('div');
+                    answerElement.classList.add('answer');
+                    answerElement.textContent = answer;
+                    answerElement.setAttribute('data-question-index', index);
+                    answerElement.addEventListener('click', handleAnswerClick);
+                    questionContainer.appendChild(answerElement);
+                });
+
+                quizContainer.appendChild(questionContainer);
+            });
+        }
+
+       
+        renderQuiz();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
